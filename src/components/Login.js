@@ -12,6 +12,7 @@ const Login = (props) => {
 const Container = styled.section`
   overflow: hidden;
   display: flex;
+  color: #f9f9f9f9;
 `;
 
 const Content = styled.div``;
