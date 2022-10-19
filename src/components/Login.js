@@ -97,6 +97,7 @@ const CTALogoTwo = styled.img`
   max-width: 600px;
   margin-bottom: 20px;
   width: 100%;
+  vertical-align: bottom;
 `;
 
 export default Login;
