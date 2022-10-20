@@ -1,8 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { auth, provider } from "../firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import {
+  selectUserName,
+  selectUserEmail,
+  selectUserPhoto,
+  setUserLoginDetails,
+} from "../features/user/userSlice";
 
-const Header = () => {
+const Header = (props) => {
   const handleAuth = () => {
     auth
       .signInWithPopup(provider)
