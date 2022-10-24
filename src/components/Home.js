@@ -53,6 +53,7 @@ const Home = (props) => {
       );
     });
   }, [userName]);
+
   return (
     <Container>
       <ImgSlider />
@@ -82,4 +83,5 @@ const Container = styled.main`
     z-index: -1;
   }
 `;
+
 export default Home;
