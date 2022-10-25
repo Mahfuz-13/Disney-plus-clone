@@ -1,19 +1,21 @@
-import React from "react";
 import styled from "styled-components";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectRecommend } from "../features/movie/movieSlice";
+
 const Recommends = (props) => {
   const movies = useSelector(selectRecommend);
+
   return (
     <Container>
-      <h4>Recommended for you</h4>
+      <h4>Recommended for You</h4>
       <Content>
         {movies &&
           movies.map((movie, key) => (
             <Wrap key={key}>
               {movie.id}
-              <Link to={"/detail/" + movie.id}>
+              <Link to={`/detail/` + movie.id}>
                 <img src={movie.cardImg} alt={movie.title} />
               </Link>
             </Wrap>
@@ -26,6 +28,7 @@ const Recommends = (props) => {
 const Container = styled.div`
   padding: 0 0 26px;
 `;
+
 const Content = styled.div`
   display: grid;
   grid-gap: 25px;
@@ -49,7 +52,6 @@ const Wrap = styled.div`
   img {
     inset: 0px;
     display: block;
-
     height: 100%;
     object-fit: cover;
     opacity: 1;
@@ -59,10 +61,9 @@ const Wrap = styled.div`
     z-index: 1;
     top: 0;
   }
-
   &:hover {
-    box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
-      rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+    box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px,
+      rgb(0 0 0 / 72%) 0px 30px 22px -10px;
     transform: scale(1.05);
     border-color: rgba(249, 249, 249, 0.8);
   }

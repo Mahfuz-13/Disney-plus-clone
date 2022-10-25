@@ -12,9 +12,10 @@ import {
 
 const Header = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
-  const history = useHistory();
+
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -23,6 +24,7 @@ const Header = (props) => {
       }
     });
   }, [userName]);
+
   const handleAuth = () => {
     if (!userName) {
       auth
@@ -40,9 +42,7 @@ const Header = (props) => {
           dispatch(setSignOutState());
           history.push("/");
         })
-        .catch((error) => {
-          alert(error.message);
-        });
+        .catch((err) => alert(err.message));
     }
   };
 
@@ -55,38 +55,39 @@ const Header = (props) => {
       })
     );
   };
+
   return (
     <Nav>
       <Logo>
-        <img src="/images/logo.svg" alt="" />
+        <img src="/images/logo.svg" alt="Disney+" />
       </Logo>
+
       {!userName ? (
         <Login onClick={handleAuth}>Login</Login>
       ) : (
         <>
           <NavMenu>
-            {" "}
             <a href="/home">
               <img src="/images/home-icon.svg" alt="HOME" />
               <span>HOME</span>
             </a>
-            <a href="/search">
+            <a>
               <img src="/images/search-icon.svg" alt="SEARCH" />
               <span>SEARCH</span>
             </a>
-            <a href="/watchlist">
+            <a>
               <img src="/images/watchlist-icon.svg" alt="WATCHLIST" />
               <span>WATCHLIST</span>
             </a>
-            <a href="/originals">
+            <a>
               <img src="/images/original-icon.svg" alt="ORIGINALS" />
               <span>ORIGINALS</span>
             </a>
-            <a href="/movies">
+            <a>
               <img src="/images/movie-icon.svg" alt="MOVIES" />
               <span>MOVIES</span>
             </a>
-            <a href="/series">
+            <a>
               <img src="/images/series-icon.svg" alt="SERIES" />
               <span>SERIES</span>
             </a>
@@ -109,19 +110,19 @@ const Nav = styled.nav`
   left: 0;
   right: 0;
   height: 70px;
-  background-color: black;
+  background-color: #090b13;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 35px;
-  letter-spacing: 15px;
+  padding: 0 36px;
+  letter-spacing: 16px;
   z-index: 3;
 `;
 
 const Logo = styled.a`
   padding: 0;
   width: 80px;
-  margin-top: 5px;
+  margin-top: 4px;
   max-height: 70px;
   font-size: 0;
   display: inline-block;
@@ -142,7 +143,6 @@ const NavMenu = styled.div`
   position: relative;
   margin-right: auto;
   margin-left: 25px;
-
   a {
     display: flex;
     align-items: center;
@@ -186,19 +186,18 @@ const NavMenu = styled.div`
       }
     }
   }
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     display: none;
-  }
+  } */
 `;
 
 const Login = styled.a`
   background-color: rgba(0, 0, 0, 0.6);
-  cursor: pointer;
   padding: 8px 16px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   border: 1px solid #f9f9f9;
-  border-radius: 5px;
+  border-radius: 4px;
   transition: all 0.2s ease 0s;
   &:hover {
     background-color: #f9f9f9;
@@ -215,10 +214,10 @@ const DropDown = styled.div`
   position: absolute;
   top: 48px;
   right: 0px;
-  background-color: rgb(19, 19, 19);
+  background: rgb(19, 19, 19);
   border: 1px solid rgba(151, 151, 151, 0.34);
   border-radius: 4px;
-  box-shadow: rgb(0 0 0 / 50%) 0px 0px 18 px 0px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
   padding: 10px;
   font-size: 14px;
   letter-spacing: 3px;
@@ -228,8 +227,8 @@ const DropDown = styled.div`
 
 const SignOut = styled.div`
   position: relative;
-  height: 50px;
-  width: 50px;
+  height: 48px;
+  width: 48px;
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -239,7 +238,6 @@ const SignOut = styled.div`
     width: 100%;
     height: 100%;
   }
-
   &:hover {
     ${DropDown} {
       opacity: 1;
@@ -247,4 +245,5 @@ const SignOut = styled.div`
     }
   }
 `;
+
 export default Header;

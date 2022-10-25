@@ -28,11 +28,9 @@ const Detail = (props) => {
       <Background>
         <img alt={detailData.title} src={detailData.backgroundImg} />
       </Background>
+
       <ImageTitle>
-        <img
-          src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/2041CE26663867FC4EF20377B8625BD629E619452E23BCDB1AB259DD475C2EA1/scale?width=1440&aspectRatio=1.78"
-          alt=""
-        />
+        <img alt={detailData.title} src={detailData.titleImg} />
       </ImageTitle>
       <ContentMeta>
         <Controls>
@@ -45,8 +43,8 @@ const Detail = (props) => {
             <span>Trailer</span>
           </Trailer>
           <AddList>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
           </AddList>
           <GroupWatch>
             <div>
@@ -54,8 +52,8 @@ const Detail = (props) => {
             </div>
           </GroupWatch>
         </Controls>
-        <SubTitle>Subtitle</SubTitle>
-        <Description>Description</Description>
+        <SubTitle>{detailData.subTitle}</SubTitle>
+        <Description>{detailData.description}</Description>
       </ContentMeta>
     </Container>
   );
@@ -67,7 +65,7 @@ const Container = styled.div`
   overflow-x: hidden;
   display: block;
   top: 72px;
-  padding: 0 calc(3.5vw+5px);
+  padding: 0 calc(3.5vw + 5px);
 `;
 
 const Background = styled.div`
@@ -75,6 +73,7 @@ const Background = styled.div`
   opacity: 0.8;
   position: fixed;
   right: 0px;
+  top: 0px;
   z-index: -1;
   img {
     width: 100vw;
@@ -86,8 +85,9 @@ const Background = styled.div`
 `;
 
 const ImageTitle = styled.div`
-  display: flex;
   align-items: flex-end;
+  display: flex;
+  -webkit-box-pack: start;
   justify-content: flex-start;
   margin: 0px auto;
   height: 30vw;
@@ -118,7 +118,7 @@ const Player = styled.button`
   margin: 0px 22px 0px 0px;
   padding: 0px 24px;
   height: 56px;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -126,7 +126,7 @@ const Player = styled.button`
   letter-spacing: 1.8px;
   text-align: center;
   text-transform: uppercase;
-  background: rgb(249, 249, 249);
+  background: rgb (249, 249, 249);
   border: none;
   color: rgb(0, 0, 0);
   img {
@@ -154,11 +154,11 @@ const Trailer = styled(Player)`
 
 const AddList = styled.div`
   margin-right: 16px;
-  width: 44px;
   height: 44px;
+  width: 44px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 50%;
   border: 2px solid white;
@@ -173,28 +173,26 @@ const AddList = styled.div`
     }
     &:nth-child(2) {
       height: 16px;
-      transform: translate(-8px) rotate(0deg);
+      transform: translateX(-8px) rotate(0deg);
       width: 2px;
     }
   }
 `;
 
 const GroupWatch = styled.div`
-  width: 44px;
   height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
+  width: 44px;
   border-radius: 50%;
-  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+  background: white;
   div {
     height: 40px;
     width: 40px;
     background: rgb(0, 0, 0);
     border-radius: 50%;
-
     img {
       width: 100%;
     }
@@ -209,11 +207,12 @@ const SubTitle = styled.div`
     font-size: 12px;
   }
 `;
+
 const Description = styled.div`
   line-height: 1.4;
   font-size: 20px;
   padding: 16px 0px;
-  color: (249, 249, 249);
+  color: rgb(249, 249, 249);
   @media (max-width: 768px) {
     font-size: 14px;
   }
